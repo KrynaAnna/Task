@@ -35,3 +35,10 @@ for row in output_table:
     # appending average rating per actor to output table
     index_of_row = output_table.index(row)
     output_table[index_of_row].append(average_rating_per_actor)
+
+# sorting output table by the total number of movies and alphabet order
+output_table.sort(key=lambda x: (x[-2], x))
+
+# beautiful output
+print(tabulate(output_table, headers=['Star Name', 'Movies', 'AVG Rating'], tablefmt="psql", disable_numparse=True,
+               colalign=("left", "center", "center")))
