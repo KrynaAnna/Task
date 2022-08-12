@@ -42,3 +42,21 @@ output_table.sort(key=lambda x: (x[-2], x))
 # beautiful output
 print(tabulate(output_table, headers=['Star Name', 'Movies', 'AVG Rating'], tablefmt="psql", disable_numparse=True,
                colalign=("left", "center", "center")))
+
+'''
+# DIFFERENT TABLE OUTPUT OPTION
+import sqlite3
+
+# creation table k
+connection = sqlite3.connect('../TASK/db.sqlite')
+cursor = connection.cursor()
+cursor.execute('CREATE table if not exists actors (Star_Name TEXT, Movies TEXT, AVG_Rating TEXT)')
+
+for out in output_table:
+    keys = tuple(out)
+    print(keys)
+    cursor.execute('INSERT INTO actors values(?, ?, ?)', keys)
+
+connection.commit()
+connection.close()
+'''
